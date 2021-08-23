@@ -9,6 +9,9 @@ class User {
   @Column({ unique: true })
   public email: string;
 
+  @Column({ default: false })
+  public isEmailConfirmed: boolean;
+
   @Column()
   public name: string;
 

@@ -5,6 +5,7 @@ const mockedUser: User = {
   email: 'test@test.com',
   name: 'test',
   password: 'hash',
+  isEmailConfirmed: false,
 };
 
 export default mockedUser;

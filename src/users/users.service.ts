@@ -66,4 +66,8 @@ export class UsersService {
       currentHashedRefreshToken: null,
     });
   }
+
+  async markEmailAsConfirmed(email: string) {
+    return this.usersRepository.update({ email }, { isEmailConfirmed: true });
+  }
 }

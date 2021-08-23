@@ -9,9 +9,16 @@ import { UsersModule } from '../users/users.module';
 import { AuthenticationService } from './authentication.service';
 import { AuthenticationController } from './authentication.controller';
 import { JwtRefreshTokenStrategy } from './jwt-refresh-token.strategy';
+import { EmailConfirmationModule } from '../emailConfirmation/emailConfirmation.module';
 
 @Module({
-  imports: [UsersModule, PassportModule, ConfigModule, JwtModule.register({})],
+  imports: [
+    UsersModule,
+    PassportModule,
+    ConfigModule,
+    JwtModule.register({}),
+    EmailConfirmationModule,
+  ],
   providers: [
     AuthenticationService,
     LocalStrategy,
