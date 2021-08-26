@@ -28,15 +28,15 @@ export class AuthenticationController {
     private readonly emailConfirmationService: EmailConfirmationService,
   ) {}
 
-  @UseGuards(JwtAuthenticationGuard)
   @Get()
+  @UseGuards(JwtAuthenticationGuard)
   authenticate(@Req() request: RequestWithUser) {
     const user = request.user;
     return user;
   }
 
-  @UseGuards(JwtRefreshGuard)
   @Get('refresh')
+  @UseGuards(JwtRefreshGuard)
   refresh(@Req() request: RequestWithUser) {
     const accessTokenCookie =
       this.authenticationService.getCookieWithJwtAccessToken(request.user.id);
@@ -54,9 +54,9 @@ export class AuthenticationController {
     return user;
   }
 
-  @HttpCode(200)
-  @UseGuards(LocalAuthenticationGuard)
   @Post('log-in')
+  @UseGuards(LocalAuthenticationGuard)
+  @HttpCode(200)
   async logIn(@Req() request: RequestWithUser) {
     const { user } = request;
     const accessTokenCookie =
@@ -73,8 +73,8 @@ export class AuthenticationController {
     return user;
   }
 
-  @UseGuards(JwtAuthenticationGuard)
   @Post('log-out')
+  @UseGuards(JwtAuthenticationGuard)
   @HttpCode(200)
   async logOut(@Req() request: RequestWithUser) {
     await this.usersService.removeRefreshToken(request.user.id);

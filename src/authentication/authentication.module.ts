@@ -26,5 +26,6 @@ import { EmailConfirmationModule } from '../emailConfirmation/emailConfirmation.
     JwtRefreshTokenStrategy,
   ],
   controllers: [AuthenticationController],
+  exports: [AuthenticationService],
 })
 export class AuthenticationModule {}

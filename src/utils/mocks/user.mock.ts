@@ -6,6 +6,7 @@ const mockedUser: User = {
   name: 'test',
   password: 'hash',
   isEmailConfirmed: false,
+  isRegisteredWithGoogle: false,
 };
 
 export default mockedUser;

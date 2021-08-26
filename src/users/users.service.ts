@@ -61,6 +61,17 @@ export class UsersService {
     }
   }
 
+  async createWithGoogle(email: string, name: string) {
+    const newUser = this.usersRepository.create({
+      email,
+      name,
+      isRegisteredWithGoogle: true,
+    });
+
+    await this.usersRepository.save(newUser);
+    return newUser;
+  }
+
   async removeRefreshToken(userId: number) {
     return this.usersRepository.update(userId, {
       currentHashedRefreshToken: null,
