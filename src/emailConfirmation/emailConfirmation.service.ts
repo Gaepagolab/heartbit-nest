@@ -1,6 +1,7 @@
 import { Injectable, BadRequestException } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { ConfigService } from '@nestjs/config';
+
 import EmailService from '../email/email.service';
 import VerificationTokenPayload from './verificationTokenPayload.interface';
 import { UsersService } from '../users/users.service';
@@ -22,7 +23,7 @@ export class EmailConfirmationService {
     await this.userService.markEmailAsConfirmed(email);
   }
 
-  public async decodedConfirmationToken(token: string) {
+  public async decodedConfirmationToken(token: string): Promise<string> {
     try {
       const payload = await this.jwtService.verify(token, {
         secret: this.configService.get('JWT_VERIFICATION_TOKEN_SECRET'),
@@ -57,9 +58,9 @@ export class EmailConfirmationService {
 
     const url = `${this.configService.get(
       'EMAIL_CONFIRMATION_URL',
-    )}?token=${token}`;
+    )}?registerToken=${token}`;
 
-    const text = `Welcome to the application. To confirm the email address, click here: ${url}`;
+    const text = `하트비트에 오신걸 환영합니다. 이메일 확인을 위해 ${url} 을/를 클릭하여 주세요.`;
 
     return this.emailService.sendMail({
       to: email,

@@ -12,6 +12,7 @@ import { EmailConfirmationService } from './emailConfirmation.service';
 import ConfirmEmailDto from './dto/confirmEmail.dto';
 import { JwtAuthenticationGuard } from '../authentication/jwt-authentication.guard';
 import RequestWithUser from '../authentication/requestWithUser.interface';
+import VerificationDto from './dto/verificationEmail.dto';
 
 @Controller('email-confirmation')
 @UseInterceptors(ClassSerializerInterceptor)
@@ -26,6 +27,13 @@ export class EmailConfirmationController {
       confirmationData.token,
     );
     await this.emailConfirmationService.confirmEmail(email);
+  }
+
+  @Post('send-verification-link')
+  async sendVerificationLink(@Body() verificationData: VerificationDto) {
+    await this.emailConfirmationService.sendVerificationLink(
+      verificationData.email,
+    );
   }
 
   @Post('resend-confirmation-link')

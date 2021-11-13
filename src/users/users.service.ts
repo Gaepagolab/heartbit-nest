@@ -24,6 +24,12 @@ export class UsersService {
     );
   }
 
+  async checkRegisteredEmail(email: string) {
+    const user = await this.usersRepository.findOne({ email });
+    if (user) return true;
+    return false;
+  }
+
   async getByEmail(email: string) {
     const user = await this.usersRepository.findOne({ email });
     if (user) {
