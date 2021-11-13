@@ -9,12 +9,18 @@ class User {
   @Column({ unique: true })
   public email: string;
 
+  @Column({ default: false })
+  public isEmailConfirmed: boolean;
+
   @Column()
   public name: string;
 
-  @Column()
+  @Column({ nullable: true })
   @Exclude()
   public password: string;
+
+  @Column({ default: false })
+  public isRegisteredWithGoogle: boolean;
 
   @Column({
     nullable: true,

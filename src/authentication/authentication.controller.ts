@@ -9,14 +9,17 @@ import {
   UseInterceptors,
   ClassSerializerInterceptor,
 } from '@nestjs/common';
+import { Request } from 'express';
 
 import { AuthenticationService } from './authentication.service';
-import RegisterDto from './dto/register.dto';
 import RequestWithUser from './requestWithUser.interface';
 import { LocalAuthenticationGuard } from './localAuthentication.guard';
 import { JwtAuthenticationGuard } from './jwt-authentication.guard';
 import { UsersService } from '../users/users.service';
 import JwtRefreshGuard from './jwt-refresh.guard';
+import { EmailConfirmationService } from '../emailConfirmation/emailConfirmation.service';
+import RegisterFromClientDTO from './dto/registerFromClient.dto';
+import CheckEmailDto from './dto/checkEmail.dto';
 
 @Controller('authentication')
 @UseInterceptors(ClassSerializerInterceptor)
@@ -24,17 +27,28 @@ export class AuthenticationController {
   constructor(
     private readonly authenticationService: AuthenticationService,
     private readonly usersService: UsersService,
+    private readonly emailConfirmationService: EmailConfirmationService,
   ) {}
 
-  @UseGuards(JwtAuthenticationGuard)
   @Get()
+  @UseGuards(JwtAuthenticationGuard)
   authenticate(@Req() request: RequestWithUser) {
     const user = request.user;
     return user;
   }
 
-  @UseGuards(JwtRefreshGuard)
+  @Post('check-email')
+  @HttpCode(200)
+  async checkRegisteredEmail(@Body() checkEmailData: CheckEmailDto) {
+    const registered = await this.usersService.checkRegisteredEmail(
+      checkEmailData.email,
+    );
+
+    return { registered };
+  }
+
   @Get('refresh')
+  @UseGuards(JwtRefreshGuard)
   refresh(@Req() request: RequestWithUser) {
     const accessTokenCookie =
       this.authenticationService.getCookieWithJwtAccessToken(request.user.id);
@@ -44,13 +58,38 @@ export class AuthenticationController {
   }
 
   @Post('register')
-  async register(@Body() registrationData: RegisterDto) {
-    return this.authenticationService.register(registrationData);
+  @HttpCode(201)
+  async register(
+    @Body() registrationData: RegisterFromClientDTO,
+    @Req() request: Request,
+  ) {
+    console.log({ registrationData });
+    const { registerToken, ...withoutTokenRegisterationData } =
+      registrationData;
+    const email = await this.emailConfirmationService.decodedConfirmationToken(
+      registerToken,
+    );
+    const user = await this.authenticationService.register({
+      email,
+      ...withoutTokenRegisterationData,
+    });
+
+    const accessTokenCookie =
+      this.authenticationService.getCookieWithJwtAccessToken(user.id);
+    const { cookie: refreshTokenCookie, token: refreshToken } =
+      this.authenticationService.getCookieWithJwtRefreshToken(user.id);
+    await this.usersService.setCurrentRefreshToken(refreshToken, user.id);
+
+    request.res.setHeader('Set-Cookie', [
+      accessTokenCookie,
+      refreshTokenCookie,
+    ]);
+    return user;
   }
 
-  @HttpCode(200)
-  @UseGuards(LocalAuthenticationGuard)
   @Post('log-in')
+  @UseGuards(LocalAuthenticationGuard)
+  @HttpCode(200)
   async logIn(@Req() request: RequestWithUser) {
     const { user } = request;
     const accessTokenCookie =
@@ -67,8 +106,8 @@ export class AuthenticationController {
     return user;
   }
 
-  @UseGuards(JwtAuthenticationGuard)
   @Post('log-out')
+  @UseGuards(JwtAuthenticationGuard)
   @HttpCode(200)
   async logOut(@Req() request: RequestWithUser) {
     await this.usersService.removeRefreshToken(request.user.id);

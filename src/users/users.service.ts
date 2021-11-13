@@ -24,6 +24,12 @@ export class UsersService {
     );
   }
 
+  async checkRegisteredEmail(email: string) {
+    const user = await this.usersRepository.findOne({ email });
+    if (user) return true;
+    return false;
+  }
+
   async getByEmail(email: string) {
     const user = await this.usersRepository.findOne({ email });
     if (user) {
@@ -61,9 +67,24 @@ export class UsersService {
     }
   }
 
+  async createWithGoogle(email: string, name: string) {
+    const newUser = this.usersRepository.create({
+      email,
+      name,
+      isRegisteredWithGoogle: true,
+    });
+
+    await this.usersRepository.save(newUser);
+    return newUser;
+  }
+
   async removeRefreshToken(userId: number) {
     return this.usersRepository.update(userId, {
       currentHashedRefreshToken: null,
     });
+  }
+
+  async markEmailAsConfirmed(email: string) {
+    return this.usersRepository.update({ email }, { isEmailConfirmed: true });
   }
 }
