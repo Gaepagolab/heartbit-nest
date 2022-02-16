@@ -2,7 +2,7 @@ import { Exclude } from 'class-transformer';
 import { Entity, Column } from 'typeorm';
 
 import { BaseEntity } from '../database/base.entity';
-import { IEntity } from '../interfaces/entity';
+import { IEntity } from '../../interfaces/entity';
 import { User } from './user.model';
 
 @Entity({ name: 'users' })

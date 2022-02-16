@@ -3,7 +3,7 @@ import { Column, Entity, ManyToOne, OneToMany } from 'typeorm';
 import CoinEntity from '../coins/coin.entity';
 import { BaseEntity } from '../database/base.entity';
 import OHLCVEntity from '../ohlcvs/ohlcv.entity';
-import { enumToArray } from '../utils/type-converter';
+import { enumToArray } from '../../utils/type-converter';
 import { CandleType } from './types/candle-type';
 
 @Entity({ name: 'candles' })

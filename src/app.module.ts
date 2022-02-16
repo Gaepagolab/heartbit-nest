@@ -2,11 +2,11 @@ import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import * as Joi from '@hapi/joi';
 
-import { DatabaseModule } from './database/database.module';
-import { UsersModule } from './users/users.module';
-import { AuthenticationModule } from './authentication/authentication.module';
-import { EmailConfirmationModule } from './emailConfirmation/emailConfirmation.module';
-import { GoogleAuthenticationModule } from './googleAuthentication/googleAuthentication.module';
+import { DatabaseModule } from './modules/database/database.module';
+import { UsersModule } from './modules/users/users.module';
+import { AuthenticationModule } from './modules/authentication/authentication.module';
+import { EmailConfirmationModule } from './modules/emailConfirmation/emailConfirmation.module';
+import { GoogleAuthenticationModule } from './modules/googleAuthentication/googleAuthentication.module';
 
 @Module({
   imports: [

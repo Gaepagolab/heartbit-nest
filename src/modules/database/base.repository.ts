@@ -4,8 +4,8 @@ import {
 } from '@nestjs/common';
 import { DeepPartial, Repository } from 'typeorm';
 
-import { IEntity } from '../interfaces/entity';
-import { IModel } from '../interfaces/model';
+import { IEntity } from '../../interfaces/entity';
+import { IModel } from '../../interfaces/model';
 
 export class BaseRepository<
   Entity extends IEntity<Model>,

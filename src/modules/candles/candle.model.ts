@@ -1,4 +1,4 @@
-import { IModel } from '../interfaces/model';
+import { IModel } from '../../interfaces/model';
 import { ICandle } from './types/candle';
 import { CandleType } from './types/candle-type';
 import { Coin } from '../coins/coin.model';

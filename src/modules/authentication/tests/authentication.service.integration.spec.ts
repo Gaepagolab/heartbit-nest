@@ -7,9 +7,9 @@ import * as bcrypt from 'bcrypt';
 import { UsersService } from '../../users/users.service';
 import { AuthenticationService } from '../authentication.service';
 import User from '../../users/user.entity';
-import mockedUser from '../../utils/mocks/user.mock';
-import { mockedConfigService } from '../../utils/mocks/config.service';
-import { mockedJwtService } from '../../utils/mocks/jwt.service';
+import mockedUser from '../../../utils/mocks/user.mock';
+import { mockedConfigService } from '../../../utils/mocks/config.service';
+import { mockedJwtService } from '../../../utils/mocks/jwt.service';
 
 jest.mock('bcrypt');
 

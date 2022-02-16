@@ -1,5 +1,5 @@
 import { Candle } from '../candles/candle.model';
-import { IModel } from '../interfaces/model';
+import { IModel } from '../../interfaces/model';
 import { IOHLCV } from './types/ohlcv';
 
 export class OHLCV implements IModel, IOHLCV {

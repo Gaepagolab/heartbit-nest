@@ -1,5 +1,5 @@
 import { Candle } from '../candles/candle.model';
-import { IModel } from '../interfaces/model';
+import { IModel } from '../../interfaces/model';
 import { ICoin } from './types/coin';
 
 export class Coin implements IModel, ICoin {

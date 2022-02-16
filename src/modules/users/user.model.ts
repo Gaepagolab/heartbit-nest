@@ -1,4 +1,4 @@
-import { IModel } from '../interfaces/model';
+import { IModel } from '../../interfaces/model';
 import { IUser } from './types/user';
 
 export class User implements IModel, IUser {
