@@ -19,5 +19,5 @@ export default class CandleEntity extends BaseEntity {
   public coin?: CoinEntity;
 
   @OneToMany(() => OHLCVEntity, (ohlcvEntity) => ohlcvEntity.candle)
-  public ohlcvs: OHLCVEntity[];
+  public ohlcvs?: OHLCVEntity[];
 }
