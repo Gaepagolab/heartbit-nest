@@ -9,6 +9,7 @@ const mockedUser: User = {
   isRegisteredWithGoogle: false,
   createdAt: new Date(),
   updatedAt: new Date(),
+  toModel: () => null,
 };
 
 export default mockedUser;
