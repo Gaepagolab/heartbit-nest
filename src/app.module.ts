@@ -7,6 +7,7 @@ import { UsersModule } from './modules/users/users.module';
 import { AuthenticationModule } from './modules/authentication/authentication.module';
 import { EmailConfirmationModule } from './modules/emailConfirmation/emailConfirmation.module';
 import { GoogleAuthenticationModule } from './modules/googleAuthentication/googleAuthentication.module';
+import { CoinsModule } from './modules/coins/coins.module';
 
 @Module({
   imports: [
@@ -35,6 +36,7 @@ import { GoogleAuthenticationModule } from './modules/googleAuthentication/googl
     UsersModule,
     EmailConfirmationModule,
     GoogleAuthenticationModule,
+    CoinsModule,
   ],
   controllers: [],
   providers: [],
