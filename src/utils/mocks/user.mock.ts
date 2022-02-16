@@ -7,6 +7,8 @@ const mockedUser: User = {
   password: 'hash',
   isEmailConfirmed: false,
   isRegisteredWithGoogle: false,
+  createdAt: new Date(),
+  updatedAt: new Date(),
 };
 
 export default mockedUser;

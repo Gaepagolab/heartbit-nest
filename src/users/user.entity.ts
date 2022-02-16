@@ -1,11 +1,10 @@
-import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
+import { Entity, Column } from 'typeorm';
 import { Exclude } from 'class-transformer';
 
-@Entity()
-class User {
-  @PrimaryGeneratedColumn()
-  public id?: number;
+import { BaseEntity } from '../database/base.entity';
 
+@Entity({ name: 'users' })
+export default class UserEntity extends BaseEntity {
   @Column({ unique: true })
   public email: string;
 
@@ -28,5 +27,3 @@ class User {
   @Exclude()
   public currentHashedRefreshToken?: string;
 }
-
-export default User;
