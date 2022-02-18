@@ -18,10 +18,7 @@ export class UsersService {
     if (user) {
       return user;
     }
-    throw new HttpException(
-      'User with this id does not exist',
-      HttpStatus.NOT_FOUND,
-    );
+    throw new HttpException('User with this id does not exist', HttpStatus.NOT_FOUND);
   }
 
   async checkRegisteredEmail(email: string) {
@@ -35,10 +32,7 @@ export class UsersService {
     if (user) {
       return user;
     }
-    throw new HttpException(
-      'User with this email does not exist',
-      HttpStatus.NOT_FOUND,
-    );
+    throw new HttpException('User with this email does not exist', HttpStatus.NOT_FOUND);
   }
 
   async create(userData: CreateUserDto) {
@@ -57,10 +51,7 @@ export class UsersService {
   async getUserIfRefreshTokenMatches(refreshToken: string, userId: number) {
     const user = await this.getById(userId);
 
-    const isRefreshTokenMatching = await bcrypt.compare(
-      refreshToken,
-      user.currentHashedRefreshToken,
-    );
+    const isRefreshTokenMatching = await bcrypt.compare(refreshToken, user.currentHashedRefreshToken);
 
     if (isRefreshTokenMatching) {
       return user;
