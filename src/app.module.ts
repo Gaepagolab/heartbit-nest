@@ -8,6 +8,7 @@ import { AuthenticationModule } from './modules/authentication/authentication.mo
 import { EmailConfirmationModule } from './modules/emailConfirmation/emailConfirmation.module';
 import { GoogleAuthenticationModule } from './modules/googleAuthentication/googleAuthentication.module';
 import { CoinsModule } from './modules/coins/coins.module';
+import { AppController } from './app.controller';
 
 @Module({
   imports: [
@@ -38,7 +39,7 @@ import { CoinsModule } from './modules/coins/coins.module';
     GoogleAuthenticationModule,
     CoinsModule,
   ],
-  controllers: [],
+  controllers: [AppController],
   providers: [],
 })
 export class AppModule {}
