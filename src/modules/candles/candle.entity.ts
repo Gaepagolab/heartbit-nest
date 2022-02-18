@@ -5,9 +5,11 @@ import { BaseEntity } from '../database/base.entity';
 import OHLCVEntity from '../ohlcvs/ohlcv.entity';
 import { enumToArray } from '../../utils/type-converter';
 import { CandleType } from './types/candle-type';
+import { Candle } from './candle.model';
+import { IEntity } from '../../interfaces/entity';
 
 @Entity({ name: 'candles' })
-export default class CandleEntity extends BaseEntity {
+export class CandleEntity extends BaseEntity implements IEntity<Candle> {
   @Column({
     type: 'enum',
     enum: enumToArray(CandleType),
@@ -15,9 +17,20 @@ export default class CandleEntity extends BaseEntity {
   })
   type: CandleType;
 
+  @Column()
+  public coinId: number;
+
   @ManyToOne(() => CoinEntity, (coinEntity) => coinEntity.candles)
   public coin?: CoinEntity;
 
   @OneToMany(() => OHLCVEntity, (ohlcvEntity) => ohlcvEntity.candle)
   public ohlcvs?: OHLCVEntity[];
+
+  toModel(): Candle {
+    return new Candle({
+      ...this,
+      coin: this.coin?.toModel(),
+      ohlcvs: this.ohlcvs?.toModels(),
+    });
+  }
 }
