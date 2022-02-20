@@ -14,15 +14,7 @@ export class Candle implements IModel, ICandle {
   public coin?: Coin;
   public ohlcvs?: OHLCV[];
 
-  constructor({
-    id,
-    createdAt,
-    updatedAt,
-    type,
-    coinId,
-    coin,
-    ohlcvs,
-  }: ICandle) {
+  constructor({ id, createdAt, updatedAt, type, coinId, coin, ohlcvs }: ICandle) {
     this.id = id;
     this.createdAt = createdAt;
     this.updatedAt = updatedAt;

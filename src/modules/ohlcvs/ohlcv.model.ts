@@ -15,19 +15,7 @@ export class OHLCV implements IModel, IOHLCV {
   public candleId: number;
   public candle?: Candle;
 
-  constructor({
-    id,
-    createdAt,
-    updatedAt,
-    datetime,
-    volume,
-    open,
-    close,
-    high,
-    low,
-    candleId,
-    candle,
-  }: IOHLCV) {
+  constructor({ id, createdAt, updatedAt, datetime, volume, open, close, high, low, candleId, candle }: IOHLCV) {
     this.id = id;
     this.createdAt = createdAt;
     this.updatedAt = updatedAt;
