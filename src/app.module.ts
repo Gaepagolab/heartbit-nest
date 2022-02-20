@@ -1,4 +1,4 @@
-import { Module } from '@nestjs/common';
+import { Module, ValidationPipe } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import * as Joi from '@hapi/joi';
 
@@ -9,6 +9,8 @@ import { EmailConfirmationModule } from './modules/emailConfirmation/emailConfir
 import { GoogleAuthenticationModule } from './modules/googleAuthentication/googleAuthentication.module';
 import { CoinsModule } from './modules/coins/coins.module';
 import { AppController } from './app.controller';
+import { APP_FILTER, APP_PIPE } from '@nestjs/core';
+import { ExceptionsLoggerFilter } from './core/exceptions/exception-logger.filter';
 
 @Module({
   imports: [
@@ -40,6 +42,9 @@ import { AppController } from './app.controller';
     CoinsModule,
   ],
   controllers: [AppController],
-  providers: [],
+  providers: [
+    { provide: APP_PIPE, useFactory: () => new ValidationPipe({ transform: true }) },
+    { provide: APP_FILTER, useClass: ExceptionsLoggerFilter },
+  ],
 })
 export class AppModule {}
