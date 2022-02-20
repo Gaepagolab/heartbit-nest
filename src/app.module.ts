@@ -11,6 +11,7 @@ import { CoinsModule } from './modules/coins/coins.module';
 import { AppController } from './app.controller';
 import { APP_FILTER, APP_PIPE } from '@nestjs/core';
 import { ExceptionsLoggerFilter } from './core/exceptions/exception-logger.filter';
+import { CandlesModule } from './modules/candles/candles.module';
 
 @Module({
   imports: [
@@ -40,6 +41,7 @@ import { ExceptionsLoggerFilter } from './core/exceptions/exception-logger.filte
     EmailConfirmationModule,
     GoogleAuthenticationModule,
     CoinsModule,
+    CandlesModule,
   ],
   controllers: [AppController],
   providers: [
