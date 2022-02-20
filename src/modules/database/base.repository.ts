@@ -1,16 +1,10 @@
-import {
-  InternalServerErrorException,
-  NotFoundException,
-} from '@nestjs/common';
+import { InternalServerErrorException, NotFoundException } from '@nestjs/common';
 import { DeepPartial, Repository } from 'typeorm';
 
-import { IEntity } from '../../interfaces/entity';
 import { IModel } from '../../interfaces/model';
+import { IEntity } from '../../interfaces/entity';
 
-export class BaseRepository<
-  Entity extends IEntity<Model>,
-  Model extends IModel,
-> {
+export class BaseRepository<Entity extends IEntity<Model>, Model extends IModel> {
   protected entityRepository: Repository<Entity>;
 
   constructor(entityRepository: Repository<Entity>) {
@@ -26,8 +20,8 @@ export class BaseRepository<
 
   async createBulk(data: DeepPartial<Entity>[]): Promise<Model[]> {
     const newEntities = this.entityRepository.create(data);
-    const saved = await this.entityRepository.save(newEntities);
-    return saved.toModels();
+    const savedes = await this.entityRepository.save(newEntities);
+    return savedes.map((saved) => saved.toModel());
   }
 
   async findAll(): Promise<Model[]> {
@@ -48,10 +42,7 @@ export class BaseRepository<
     return updatedEntity.toModel();
   }
 
-  async updateBulk(
-    ids: number[],
-    datum: DeepPartial<Entity>,
-  ): Promise<Model[]> {
+  async updateBulk(ids: number[], datum: DeepPartial<Entity>): Promise<Model[]> {
     await this.entityRepository.update(ids, datum);
     const updatedEntities = await this.entityRepository.findByIds(ids);
     if (!updatedEntities) throw new NotFoundException('Entity not found');
@@ -60,7 +51,6 @@ export class BaseRepository<
 
   async delete(id: number): Promise<void> {
     const deleteResponse = await this.entityRepository.delete(id);
-    if (deleteResponse.affected !== 1)
-      throw new InternalServerErrorException('Entity not deleted');
+    if (deleteResponse.affected !== 1) throw new InternalServerErrorException('Entity not deleted');
   }
 }
