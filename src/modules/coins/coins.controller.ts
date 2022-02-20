@@ -2,7 +2,7 @@ import { Body, Post } from '@nestjs/common';
 
 import { Coin } from './coin.model';
 import { CoinsService } from './coins.service';
-import { CreateCoinBody } from './protocols/post-coin.body';
+import { CreateCoinBody } from './protocols/create-coin.body';
 import { SwaggerController } from '../../core/decorators/controller.decorator';
 
 @SwaggerController('core', '[core] coin')
