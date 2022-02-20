@@ -20,9 +20,9 @@ export class Coin implements IModel, ICoin {
   toJSON() {
     return {
       id: this.id,
+      name: this.name,
       createdAt: this.createdAt,
       updatedAt: this.updatedAt,
-      name: this.candles,
       candles: this.candles,
     };
   }
