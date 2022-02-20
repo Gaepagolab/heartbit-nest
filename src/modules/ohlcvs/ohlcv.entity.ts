@@ -13,7 +13,7 @@ export default class OHLCVEntity extends BaseEntity implements IEntity<OHLCV> {
   @Column()
   public candleId: number;
 
-  @Column()
+  @Column({ type: 'double precision' })
   public volume: number;
 
   @Column({ type: 'double precision' })
