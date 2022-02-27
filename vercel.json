@@ -1,6 +1,6 @@
 {
-  "version": 1,
-  "scope": "gaepagolab",
+  "version": 2,
+  "scope": "gaepago",
   "builds": [
     {
       "src": "vercel-entry.js",
