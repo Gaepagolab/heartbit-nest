@@ -1,4 +1,4 @@
-import User from '../../users/user.entity';
+import User from '../../modules/users/user.entity';
 
 const mockedUser: User = {
   id: 1,
@@ -7,6 +7,9 @@ const mockedUser: User = {
   password: 'hash',
   isEmailConfirmed: false,
   isRegisteredWithGoogle: false,
+  createdAt: new Date(),
+  updatedAt: new Date(),
+  toModel: () => null,
 };
 
 export default mockedUser;

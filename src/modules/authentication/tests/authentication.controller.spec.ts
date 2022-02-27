@@ -6,12 +6,12 @@ import { JwtService } from '@nestjs/jwt';
 import * as request from 'supertest';
 
 import User from '../../users/user.entity';
-import mockedUser from '../../utils/mocks/user.mock';
+import mockedUser from '../../../utils/mocks/user.mock';
 import { AuthenticationController } from '../authentication.controller';
 import { UsersService } from '../../users/users.service';
 import { AuthenticationService } from '../authentication.service';
-import { mockedConfigService } from '../../utils/mocks/config.service';
-import { mockedJwtService } from '../../utils/mocks/jwt.service';
+import { mockedConfigService } from '../../../utils/mocks/config.service';
+import { mockedJwtService } from '../../../utils/mocks/jwt.service';
 
 describe('The AuthenticationController', () => {
   let app: INestApplication;
