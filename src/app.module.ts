@@ -17,14 +17,11 @@ import { OHLCVsModule } from './modules/ohlcvs/ohlcvs.module';
 
 @Module({
   imports: [
+    DatabaseModule,
     ConfigModule.forRoot({
       validationSchema: Joi.object({
-        POSTGRES_HOST: Joi.string().required(),
-        POSTGRES_PORT: Joi.number().required(),
-        POSTGRES_USER: Joi.string().required(),
-        POSTGRES_PASSWORD: Joi.string().required(),
-        POSTGRES_DB: Joi.string().required(),
         PORT: Joi.number(),
+        DB_URL: Joi.string().required(),
         JWT_ACCESS_TOKEN_SECRET: Joi.string().required(),
         JWT_ACCESS_TOKEN_EXPIRATION_TIME: Joi.string().required(),
         JWT_REFRESH_TOKEN_SECRET: Joi.string().required(),
@@ -37,7 +34,6 @@ import { OHLCVsModule } from './modules/ohlcvs/ohlcvs.module';
         GOOGLE_AUTH_CLIENT_SECRET: Joi.string().required(),
       }),
     }),
-    DatabaseModule,
     AuthenticationModule,
     UsersModule,
     EmailConfirmationModule,
