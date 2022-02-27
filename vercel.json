@@ -1,0 +1,20 @@
+{
+  "version": 1,
+  "scope": "gaepagolab",
+  "builds": [
+    {
+      "src": "vercel-entry.js",
+      "use": "@vercel/node",
+      "config": {
+        "helpers": "false",
+        "includeFiles": ["dist/**", "ormconfig.js"]
+      }
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "vercel-entry.js"
+    }
+  ]
+}
