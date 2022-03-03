@@ -1,4 +1,4 @@
-import { Body, Get, Post, Query } from '@nestjs/common';
+import { Body, Get, Param, Post, Query } from '@nestjs/common';
 
 import { SwaggerController } from '../../core/decorators/controller.decorator';
 import { Candle } from './candle.model';
@@ -29,5 +29,10 @@ export class CandlesController {
   @Get()
   async getByCoinId(@Query('coinId') coinId: number): Promise<Candle[]> {
     return this.candlesService.findByCoinId(coinId);
+  }
+
+  @Get('/:id')
+  async get(@Param('id') id: number): Promise<number> {
+    return id;
   }
 }
