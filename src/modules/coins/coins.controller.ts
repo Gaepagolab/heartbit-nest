@@ -5,7 +5,7 @@ import { CoinsService } from './coins.service';
 import { CreateCoinBody } from './protocols/create-coin.body';
 import { SwaggerController } from '../../core/decorators/controller.decorator';
 
-@SwaggerController('core', '[core] coin')
+@SwaggerController('coins')
 export class CoinsController {
   constructor(private readonly coinsService: CoinsService) {}
 

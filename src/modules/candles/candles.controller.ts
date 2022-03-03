@@ -6,7 +6,7 @@ import { CandlesService } from './candles.service';
 import { OHLCVsService } from '../ohlcvs/ohlcvs.service';
 import { PostCandleBody } from './protocols/post-candle.body';
 
-@SwaggerController('core', '[core] candle')
+@SwaggerController('candles')
 export class CandlesController {
   constructor(
     // line break
