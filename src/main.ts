@@ -3,6 +3,7 @@ import * as cookieParser from 'cookie-parser';
 import * as helmet from 'helmet';
 import { urlencoded, json } from 'body-parser';
 
+import './utils/array';
 import { AppModule } from './app.module';
 import { activateSwaggerModule } from './utils/swagger/activate-swagger';
 import { LoggingInterceptor } from './core/interceptors/logging.interceptor';

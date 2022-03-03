@@ -1,4 +1,4 @@
-import { Body, Post } from '@nestjs/common';
+import { Body, Get, Param, Post } from '@nestjs/common';
 
 import { Coin } from './coin.model';
 import { CoinsService } from './coins.service';
@@ -9,8 +9,18 @@ import { SwaggerController } from '../../core/decorators/controller.decorator';
 export class CoinsController {
   constructor(private readonly coinsService: CoinsService) {}
 
-  @Post('/coin')
+  @Post()
   async post(@Body() createCoinBody: CreateCoinBody): Promise<Coin> {
     return await this.coinsService.create(createCoinBody.toDto());
+  }
+
+  @Get()
+  async getAll(): Promise<Coin[]> {
+    return await this.coinsService.findAll();
+  }
+
+  @Get('/:id')
+  async get(@Param('id') id: number): Promise<Coin> {
+    return await this.coinsService.findByPk(id);
   }
 }

@@ -11,4 +11,12 @@ export class CoinsService {
   async create(createCoinDto: CreateCoinDto): Promise<Coin> {
     return await this.coinsRepository.create(createCoinDto);
   }
+
+  async findAll(): Promise<Coin[]> {
+    return await this.coinsRepository.findAll();
+  }
+
+  async findByPk(id: number): Promise<Coin> {
+    return await this.coinsRepository.findByPk(id);
+  }
 }
