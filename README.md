@@ -1,9 +1,3 @@
-
-
-<p align="center">
-  <a href="https://github.com/nearthlab/wind-nest/actions/workflows/run-test.yml"><img src="https://github.com/nearthlab/wind-nest/actions/workflows/run-test.yml/badge.svg?branch=staging" alt="Test Workflow Badge" /></a>
-</p>
-
 ## Description
 
 Heartbit Server using [Nest](https://github.com/nestjs/nest)(w/ TypeScript)
