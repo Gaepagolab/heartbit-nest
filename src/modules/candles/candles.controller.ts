@@ -1,4 +1,4 @@
-import { Body, Post } from '@nestjs/common';
+import { Body, Get, Param, Post, Query } from '@nestjs/common';
 
 import { SwaggerController } from '../../core/decorators/controller.decorator';
 import { Candle } from './candle.model';
@@ -14,7 +14,7 @@ export class CandlesController {
     private readonly ohlcvsService: OHLCVsService,
   ) {}
 
-  @Post('/candle')
+  @Post()
   async post(@Body() body: PostCandleBody): Promise<Candle> {
     const candle = await this.candlesService.create(body.toCreateCandleDto());
 
@@ -24,5 +24,15 @@ export class CandlesController {
     candle.ohlcvs = ohlcvs;
 
     return candle;
+  }
+
+  @Get('/:id')
+  async get(@Param('id') id: number): Promise<Candle> {
+    return this.candlesService.findByPk(id);
+  }
+
+  @Get()
+  async getByCoinId(@Query('coinId') coinId: number): Promise<Candle[]> {
+    return this.candlesService.findByCoinId(coinId);
   }
 }
