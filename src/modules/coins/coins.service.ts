@@ -15,4 +15,8 @@ export class CoinsService {
   async findAll(): Promise<Coin[]> {
     return await this.coinsRepository.findAll();
   }
+
+  async findByPk(id: number): Promise<Coin> {
+    return await this.coinsRepository.findByPk(id);
+  }
 }

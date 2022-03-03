@@ -1,4 +1,4 @@
-import { Body, Get, Post } from '@nestjs/common';
+import { Body, Get, Param, Post } from '@nestjs/common';
 
 import { Coin } from './coin.model';
 import { CoinsService } from './coins.service';
@@ -17,5 +17,10 @@ export class CoinsController {
   @Get()
   async getAll(): Promise<Coin[]> {
     return await this.coinsService.findAll();
+  }
+
+  @Get('/:id')
+  async get(@Param('id') id: number): Promise<Coin> {
+    return await this.coinsService.findByPk(id);
   }
 }
