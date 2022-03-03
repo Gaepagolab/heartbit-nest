@@ -14,4 +14,15 @@ export class CandlesRepository extends BaseRepository<CandleEntity, Candle> {
   ) {
     super(candlesRepository);
   }
+
+  async findByCoinId(coinId: number): Promise<Candle[]> {
+    const results = await this.candlesRepository.find({
+      where: { coinId },
+      order: {
+        id: 'ASC',
+      },
+    });
+
+    return results.toModels();
+  }
 }

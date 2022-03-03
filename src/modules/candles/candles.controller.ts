@@ -27,7 +27,7 @@ export class CandlesController {
   }
 
   @Get()
-  async getByCoinId(@Query('coinId') coinId: number): Promise<number> {
-    return coinId;
+  async getByCoinId(@Query('coinId') coinId: number): Promise<Candle[]> {
+    return this.candlesService.findByCoinId(coinId);
   }
 }

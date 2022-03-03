@@ -11,4 +11,8 @@ export class CandlesService {
   async create(createCandleDto: CreateCandleDto): Promise<Candle> {
     return await this.candlesRepository.create(createCandleDto);
   }
+
+  async findByCoinId(coinId: number): Promise<Candle[]> {
+    return await this.candlesRepository.findByCoinId(coinId);
+  }
 }
