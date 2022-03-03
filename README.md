@@ -1,73 +1,90 @@
+
+
 <p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo_text.svg" width="320" alt="Nest Logo" /></a>
+  <a href="https://github.com/nearthlab/wind-nest/actions/workflows/run-test.yml"><img src="https://github.com/nearthlab/wind-nest/actions/workflows/run-test.yml/badge.svg?branch=staging" alt="Test Workflow Badge" /></a>
 </p>
-
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
-
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
 
 ## Description
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+Heartbit Server using [Nest](https://github.com/nestjs/nest)(w/ TypeScript)
 
 ## Installation
 
 ```bash
-$ npm install
+yarn
 ```
 
 ## Running the app
+* prerequisite: `.env` file  
+  Must obtain `.env` file for environment variable for Running.  
+  (Contact to repository maintainer.)
+
+  or see code of `validationSchema: Joi.object` in [app.module.ts](./src/app.module.ts) file to check which key required.
+
+### Development
+<details>
+  <summary>prerequisite: database for local testing</summary>
+  <blockquote>
+  Install PostgreSQL with version '13.3'(current version of RDS).
+
+  (Install via '[Docker](https://hub.docker.com/_/postgres)' or directly on your local machine, as you like.)
+  
+  ```bash
+  docker rm pg-container-13.3 --force # if running container exists.
+  docker run --name pg-container-13.3 -p 5432:5432 -e POSTGRES_USER=root -e POSTGRES_PASSWORD=dnwnwjdqhrwk! -e POSTGRES_DB=wind -d postgres:13.3
+  docker exec -i pg-container-13.3 psql -U root postgres -c "CREATE DATABASE wind;"
+  docker ps
+  ```
+  </blockquote>
+</details>
+
 
 ```bash
-# development
-$ npm run start
+yarn start
+```
 
-# watch mode
-$ npm run start:dev
+### Watch Mode
 
-# production mode
-$ npm run start:prod
+```bash
+yarn dev #or
+yarn start:dev
+```
+
+### production mode(not yet @2022-03-04)
+
+```bash
+yarn start:prod
 ```
 
 ## Test
 
+### unit tests
+
 ```bash
-# unit tests
-$ npm run test
-
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
+yarn test
 ```
 
-## Support
+### e2e tests
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+```bash
+yarn test:e2e
+```
 
-## Stay in touch
+## Migration
+Install typeorm-cli for easily debugging
+```bash
+yarn global add typeorm
+# check installation
+which typeorm
+```
 
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+```bash
+## ## `yarn build` required for preventing un-synchronized JS(transpiled) with TS(source).
+yarn build && typeorm migration:show
+yarn build && typeorm migration:generate # same as 'yarn migration:generate'
+yarn build && typeorm migration:run
+yarn build && typeorm migration:revert
+```
 
-## License
-
-Nest is [MIT licensed](LICENSE).
+## Project Directory Structure
+see [directory-structure.md](./docs/directory-structure.md) file.
