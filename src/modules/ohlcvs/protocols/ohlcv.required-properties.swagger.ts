@@ -42,5 +42,5 @@ export class OHLCVRequiredPropertiesSwagger {
     type: Number,
   })
   @IsPositive()
-  canldeId: number;
+  candleId: number;
 }

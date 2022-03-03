@@ -32,5 +32,5 @@ export class CandleRequiredPropertiesSwagger {
   @IsArray()
   @ValidateNested({ each: true })
   @Type(() => OHLCV)
-  ohldvs: OHLCV[];
+  ohlcvs: OHLCV[];
 }

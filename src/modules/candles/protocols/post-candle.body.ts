@@ -6,7 +6,7 @@ import { CandleOptionalPropertiesSwagger } from './candle.optional-properties.sw
 import { CandleRequiredPropertiesSwagger } from './candle.required-properties.swagger';
 
 export class PostCandleBody extends IntersectionType(
-  PickType(CandleRequiredPropertiesSwagger, ['type', 'coinId', 'ohldvs']),
+  PickType(CandleRequiredPropertiesSwagger, ['type', 'coinId', 'ohlcvs']),
   PickType(CandleOptionalPropertiesSwagger, undefined),
 ) {
   toCreateCandleDto(): CreateCandleDto {
@@ -16,8 +16,8 @@ export class PostCandleBody extends IntersectionType(
   }
 
   toCreateOHLCVDtos(candleId: number): CreateOHLCVDto[] {
-    const { ohldvs } = this;
+    const { ohlcvs } = this;
 
-    return ohldvs.map((ohlcv) => CreateOHLCVDto.from({ ...ohlcv, candleId }));
+    return ohlcvs.map((ohlcv) => CreateOHLCVDto.from({ ...ohlcv, candleId }));
   }
 }
