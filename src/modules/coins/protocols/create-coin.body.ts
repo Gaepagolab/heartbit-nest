@@ -1,8 +1,8 @@
 import { IntersectionType, PickType } from '@nestjs/swagger';
 
 import { CreateCoinDto } from '../dtos/create-coin.dto';
-import { CoinOptionalPropertiesSwagger } from './fleet.optional-properties.swagger';
-import { CoinRequiredPropertiesSwagger } from './fleet.required-properties.swagger';
+import { CoinOptionalPropertiesSwagger } from './coin.optional-properties.swagger';
+import { CoinRequiredPropertiesSwagger } from './coin.required-properties.swagger';
 
 export class CreateCoinBody extends IntersectionType(
   PickType(CoinRequiredPropertiesSwagger, ['name']),
