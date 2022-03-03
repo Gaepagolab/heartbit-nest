@@ -26,13 +26,13 @@ export class CandlesController {
     return candle;
   }
 
+  @Get('/:id')
+  async get(@Param('id') id: number): Promise<Candle> {
+    return this.candlesService.findByPk(id);
+  }
+
   @Get()
   async getByCoinId(@Query('coinId') coinId: number): Promise<Candle[]> {
     return this.candlesService.findByCoinId(coinId);
-  }
-
-  @Get('/:id')
-  async get(@Param('id') id: number): Promise<number> {
-    return id;
   }
 }

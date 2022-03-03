@@ -12,6 +12,10 @@ export class CandlesService {
     return await this.candlesRepository.create(createCandleDto);
   }
 
+  async findByPk(id: number): Promise<Candle> {
+    return await this.candlesRepository.findByPk(id);
+  }
+
   async findByCoinId(coinId: number): Promise<Candle[]> {
     return await this.candlesRepository.findByCoinId(coinId);
   }
