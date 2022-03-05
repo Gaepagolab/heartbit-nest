@@ -19,8 +19,8 @@ export class CoinsController {
     return await this.coinsService.findAll();
   }
 
-  @Get('/:id')
-  async get(@Param('id') id: number): Promise<Coin> {
-    return await this.coinsService.findByPk(id);
+  @Get('/:name')
+  async getByName(@Param('name') name: string): Promise<Coin> {
+    return await this.coinsService.findByName(name);
   }
 }
