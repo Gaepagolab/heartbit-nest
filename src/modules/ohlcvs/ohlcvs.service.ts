@@ -24,9 +24,7 @@ export class OHLCVsService {
   }
 
   async createBulk(dtos: CreateOHLCVDto[]): Promise<OHLCV[]> {
-    console.log('guard Invalid');
     this.guardOfCreateBulkForBelongedSameCandle(dtos);
-    console.log('guard valid');
     return await this.ohlcvsRepository.createBulk(dtos);
   }
 }
