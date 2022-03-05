@@ -17,8 +17,9 @@ export class CoinsRepository extends BaseRepository<CoinEntity, Coin> {
     super(coinsRepository);
   }
 
-  async findByPk(id: number): Promise<Coin> {
-    const coin = await this.coinsRepository.findOne(id, {
+  async findByName(name: string): Promise<Coin> {
+    const coin = await this.coinsRepository.findOne({
+      where: { name },
       relations: this.findOneRelations,
     });
     if (!coin) throw new NotFoundException('Coin not found');

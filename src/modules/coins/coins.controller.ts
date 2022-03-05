@@ -20,7 +20,7 @@ export class CoinsController {
   }
 
   @Get('/:name')
-  async getByName(@Param('name') name: string): Promise<string> {
-    return name;
+  async getByName(@Param('name') name: string): Promise<Coin> {
+    return await this.coinsService.findByName(name);
   }
 }
