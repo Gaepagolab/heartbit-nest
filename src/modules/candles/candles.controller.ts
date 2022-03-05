@@ -17,7 +17,7 @@ export class CandlesController {
   @Post()
   async post(@Body() body: PostCandleBody): Promise<Candle> {
     const candle = await this.candlesService.create(body.toCreateCandleDto());
-
+    console.log(candle);
     const createOHLCVDtos = body.toCreateOHLCVDtos(candle.id);
     const ohlcvs = await this.ohlcvsService.createBulk(createOHLCVDtos);
 
