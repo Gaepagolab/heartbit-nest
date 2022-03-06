@@ -1,8 +1,9 @@
-import { Body, Post } from '@nestjs/common';
+import { Body, Get, Post, Query } from '@nestjs/common';
 
 import { SwaggerController } from '../../core/decorators/controller.decorator';
 import { OHLCV } from './ohlcv.model';
 import { OHLCVsService } from './ohlcvs.service';
+import { OHLCVsQuery } from './protocols/ohlcvs.query';
 import { PostCreateBulkBody } from './protocols/post-createBulk.body';
 
 @SwaggerController('ohlcvs')
@@ -11,6 +12,11 @@ export class OHLCVsController {
 
   @Post()
   async post(@Body() body: PostCreateBulkBody): Promise<OHLCV[]> {
-    return this.ohlcvsServce.createBulk(body.toDtos());
+    return await this.ohlcvsServce.createBulk(body.toDtos());
+  }
+
+  @Get()
+  async getAll(@Query() query: OHLCVsQuery): Promise<OHLCV[]> {
+    return await this.ohlcvsServce.findByCandleId(query.candleId);
   }
 }

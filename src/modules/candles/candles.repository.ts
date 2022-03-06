@@ -9,7 +9,7 @@ import { CreateCandleDto } from './dtos/create-candle.dto';
 
 @Injectable()
 export class CandlesRepository extends BaseRepository<CandleEntity, Candle> {
-  protected findOneRelations = ['ohlcvs'];
+  protected findOneRelations = ['results'];
 
   constructor(
     @InjectRepository(CandleEntity)
