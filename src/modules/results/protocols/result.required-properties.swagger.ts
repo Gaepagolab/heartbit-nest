@@ -11,25 +11,21 @@ export class ResultRequiredPropertiesSwagger {
   @ProtocolProperty({
     type: String,
   })
-  @IsPositive()
   currentStart: string;
 
   @ProtocolProperty({
     type: String,
   })
-  @IsPositive()
   currentEnd: string;
 
   @ProtocolProperty({
     type: String,
   })
-  @IsPositive()
   findStart: string;
 
   @ProtocolProperty({
     type: String,
   })
-  @IsPositive()
   findEnd: string;
 
   @ProtocolProperty({
