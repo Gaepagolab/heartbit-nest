@@ -12,11 +12,11 @@ export class OHLCVsController {
 
   @Post()
   async post(@Body() body: PostCreateBulkBody): Promise<OHLCV[]> {
-    return this.ohlcvsServce.createBulk(body.toDtos());
+    return await this.ohlcvsServce.createBulk(body.toDtos());
   }
 
   @Get()
-  async getAll(@Query() query: OHLCVsQuery): Promise<any> {
-    return query;
+  async getAll(@Query() query: OHLCVsQuery): Promise<OHLCV[]> {
+    return await this.ohlcvsServce.findByCandleId(query.candleId);
   }
 }

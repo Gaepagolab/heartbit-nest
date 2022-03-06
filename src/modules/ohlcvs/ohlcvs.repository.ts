@@ -14,4 +14,13 @@ export class OHLCVsRepository extends BaseRepository<OHLCVEntity, OHLCV> {
   ) {
     super(ohlcvsRepository);
   }
+
+  async findByCandleId(candleId: number): Promise<OHLCV[]> {
+    const results = await this.ohlcvsRepository.find({
+      select: ['id', 'open', 'close', 'datetime', 'high', 'low', 'volume'],
+      where: { candleId },
+    });
+
+    return results.toModels();
+  }
 }

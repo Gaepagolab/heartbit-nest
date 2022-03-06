@@ -27,4 +27,8 @@ export class OHLCVsService {
     this.guardOfCreateBulkForBelongedSameCandle(dtos);
     return await this.ohlcvsRepository.createBulk(dtos);
   }
+
+  async findByCandleId(candleId: number): Promise<OHLCV[]> {
+    return await this.ohlcvsRepository.findByCandleId(candleId);
+  }
 }
