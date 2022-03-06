@@ -3,6 +3,7 @@ import { Type } from 'class-transformer';
 import { IsArray, IsInt, IsPositive, ValidateNested } from 'class-validator';
 
 import { ProtocolProperty } from '../../../core/decorators/protocol-properties';
+import { CreateResultDto } from '../dto/create-result.dto';
 import { ResultOptionalPropertiesSwagger } from './result.optional-properties.swagger';
 import { ResultRequiredPropertiesSwagger } from './result.required-properties.swagger';
 
@@ -24,4 +25,10 @@ export class CreateBulkResultsBody {
   @ValidateNested({ each: true })
   @Type(() => Result)
   results: Result[];
+
+  toDtos(): CreateResultDto[] {
+    const { candleId, results } = this;
+
+    return results.map((result) => CreateResultDto.from({ ...result, candleId }));
+  }
 }
