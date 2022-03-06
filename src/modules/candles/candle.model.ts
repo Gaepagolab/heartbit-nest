@@ -3,6 +3,7 @@ import { ICandle } from './types/candle';
 import { CandleType } from './types/candle-type';
 import { Coin } from '../coins/coin.model';
 import { OHLCV } from '../ohlcvs/ohlcv.model';
+import { Result } from '../results/result.model';
 
 export class Candle implements IModel, ICandle {
   public id: number;
@@ -13,8 +14,9 @@ export class Candle implements IModel, ICandle {
   public coinId?: number;
   public coin?: Coin;
   public ohlcvs?: OHLCV[];
+  public results?: Result[];
 
-  constructor({ id, createdAt, updatedAt, type, coinId, coin, ohlcvs }: ICandle) {
+  constructor({ id, createdAt, updatedAt, type, coinId, coin, ohlcvs, results }: ICandle) {
     this.id = id;
     this.createdAt = createdAt;
     this.updatedAt = updatedAt;
@@ -22,6 +24,7 @@ export class Candle implements IModel, ICandle {
     this.coinId = coinId;
     this.coin = coin;
     this.ohlcvs = ohlcvs;
+    this.results = results;
   }
 
   toJSON() {
@@ -33,6 +36,7 @@ export class Candle implements IModel, ICandle {
       coinId: this.coinId,
       coin: this.coin,
       ohlcvs: this.ohlcvs,
+      results: this.results,
     };
   }
 }
