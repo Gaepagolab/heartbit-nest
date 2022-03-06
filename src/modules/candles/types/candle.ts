@@ -1,3 +1,6 @@
+import { Coin } from '../../coins/coin.model';
+import { OHLCV } from '../../ohlcvs/ohlcv.model';
+import { Result } from '../../results/result.model';
 import { CandleType } from './candle-type';
 
 export interface ICandle {
@@ -8,6 +11,7 @@ export interface ICandle {
   type: CandleType;
   coinId?: number;
 
-  coin?: any;
-  ohlcvs?: any;
+  coin?: Coin;
+  ohlcvs?: OHLCV[];
+  results?: Result[];
 }
