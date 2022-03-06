@@ -14,6 +14,7 @@ import { GoogleAuthenticationModule } from './modules/googleAuthentication/googl
 import { CoinsModule } from './modules/coins/coins.module';
 import { CandlesModule } from './modules/candles/candles.module';
 import { OHLCVsModule } from './modules/ohlcvs/ohlcvs.module';
+import { ResultsModule } from './modules/results/results.module';
 
 @Module({
   imports: [
@@ -41,6 +42,7 @@ import { OHLCVsModule } from './modules/ohlcvs/ohlcvs.module';
     CoinsModule,
     CandlesModule,
     OHLCVsModule,
+    ResultsModule,
   ],
   controllers: [AppController],
   providers: [
