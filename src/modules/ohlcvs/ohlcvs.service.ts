@@ -3,6 +3,7 @@ import { Injectable } from '@nestjs/common';
 import { OHLCV } from './ohlcv.model';
 import { CreateOHLCVDto } from './dtos/create-ohlcv.dto';
 import { OHLCVsRepository } from './ohlcvs.repository';
+import { UpdateOHLCVDto } from './dtos/update-ohlcv.dto';
 
 @Injectable()
 export class OHLCVsService {
@@ -30,5 +31,13 @@ export class OHLCVsService {
 
   async findByCandleId(candleId: number): Promise<OHLCV[]> {
     return await this.ohlcvsRepository.findByCandleId(candleId);
+  }
+
+  async findLastestByCandleId(candleId: number): Promise<OHLCV> {
+    return await this.ohlcvsRepository.getLatestByCandleId(candleId);
+  }
+
+  async update(id: number, dto: UpdateOHLCVDto): Promise<OHLCV> {
+    return await this.ohlcvsRepository.update(id, dto);
   }
 }

@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 
@@ -22,5 +22,18 @@ export class OHLCVsRepository extends BaseRepository<OHLCVEntity, OHLCV> {
     });
 
     return results.toModels();
+  }
+
+  async getLatestByCandleId(candleId: number): Promise<OHLCV> {
+    const entity = await this.ohlcvsRepository.findOne({
+      where: { candleId },
+      order: {
+        datetime: 'DESC',
+      },
+    });
+
+    if (!entity) throw new NotFoundException('Entity not found');
+
+    return entity.toModel();
   }
 }

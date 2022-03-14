@@ -23,6 +23,8 @@ export class OHLCVsController {
 
   @Patch('/lastest')
   async updateLatest(@Body() body: UpdateLatestBody) {
-    return 'lastest';
+    const latest = await this.ohlcvsServce.findLastestByCandleId(body.candleId);
+
+    return await this.ohlcvsServce.update(latest.id, body.toDtos());
   }
 }
