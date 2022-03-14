@@ -1,10 +1,11 @@
-import { Body, Get, Post, Put, Query } from '@nestjs/common';
+import { Body, Get, Patch, Post, Query } from '@nestjs/common';
 
 import { SwaggerController } from '../../core/decorators/controller.decorator';
 import { OHLCV } from './ohlcv.model';
 import { OHLCVsService } from './ohlcvs.service';
 import { OHLCVsQuery } from './protocols/ohlcvs.query';
 import { PostCreateBulkBody } from './protocols/post-createBulk.body';
+import { UpdateLatestBody } from './protocols/update-latest.body';
 
 @SwaggerController('ohlcvs')
 export class OHLCVsController {
@@ -20,8 +21,8 @@ export class OHLCVsController {
     return await this.ohlcvsServce.findByCandleId(query.candleId);
   }
 
-  @Put('/lastest')
-  async updateLatest() {
+  @Patch('/lastest')
+  async updateLatest(@Body() body: UpdateLatestBody) {
     return 'lastest';
   }
 }
