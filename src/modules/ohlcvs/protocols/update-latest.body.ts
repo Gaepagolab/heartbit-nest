@@ -5,8 +5,8 @@ import { OHLCVOptionalPropertiesSwagger } from './ohlcv.optional-properties.swag
 import { OHLCVRequiredPropertiesSwagger } from './ohlcv.required-properties.swagger';
 
 export class UpdateLatestBody extends IntersectionType(
-  PickType(OHLCVRequiredPropertiesSwagger, ['candleId', 'datetime', 'open', 'high', 'close', 'low', 'volume']),
-  PickType(OHLCVOptionalPropertiesSwagger, undefined),
+  PickType(OHLCVRequiredPropertiesSwagger, ['candleId']),
+  PickType(OHLCVOptionalPropertiesSwagger, ['datetime', 'open', 'low', 'close', 'volume', 'high']),
 ) {
   toDtos(): UpdateOHLCVDto {
     const { datetime, open, high, close, low, volume } = this;
