@@ -9,7 +9,7 @@ import { OHLCVRequiredPropertiesSwagger } from './ohlcv.required-properties.swag
 
 class OHLCV extends IntersectionType(
   PickType(OHLCVRequiredPropertiesSwagger, ['datetime', 'open', 'high', 'close', 'low', 'volume']),
-  PickType(OHLCVOptionalPropertiesSwagger, undefined),
+  PickType(OHLCVOptionalPropertiesSwagger, []),
 ) {}
 
 export class PostCreateBulkBody {
