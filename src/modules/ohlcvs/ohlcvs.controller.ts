@@ -1,4 +1,4 @@
-import { Body, Get, Post, Query } from '@nestjs/common';
+import { Body, Get, Post, Put, Query } from '@nestjs/common';
 
 import { SwaggerController } from '../../core/decorators/controller.decorator';
 import { OHLCV } from './ohlcv.model';
@@ -18,5 +18,10 @@ export class OHLCVsController {
   @Get()
   async getAll(@Query() query: OHLCVsQuery): Promise<OHLCV[]> {
     return await this.ohlcvsServce.findByCandleId(query.candleId);
+  }
+
+  @Put('/lastest')
+  async updateLatest() {
+    return 'lastest';
   }
 }
