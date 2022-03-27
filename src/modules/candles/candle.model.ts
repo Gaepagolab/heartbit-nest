@@ -13,10 +13,10 @@ export class Candle implements IModel, ICandle {
   public type: CandleType;
   public coinId?: number;
   public coin?: Coin;
+  public result?: Result;
   public ohlcvs?: OHLCV[];
-  public results?: Result[];
 
-  constructor({ id, createdAt, updatedAt, type, coinId, coin, ohlcvs, results }: ICandle) {
+  constructor({ id, createdAt, updatedAt, type, coinId, coin, ohlcvs, result }: ICandle) {
     this.id = id;
     this.createdAt = createdAt;
     this.updatedAt = updatedAt;
@@ -24,7 +24,7 @@ export class Candle implements IModel, ICandle {
     this.coinId = coinId;
     this.coin = coin;
     this.ohlcvs = ohlcvs;
-    this.results = results;
+    this.result = result;
   }
 
   toJSON() {
@@ -36,7 +36,7 @@ export class Candle implements IModel, ICandle {
       coinId: this.coinId,
       coin: this.coin,
       ohlcvs: this.ohlcvs,
-      results: this.results,
+      result: this.result,
     };
   }
 }
