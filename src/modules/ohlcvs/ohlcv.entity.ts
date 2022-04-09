@@ -13,19 +13,19 @@ export default class OHLCVEntity extends BaseEntity implements IEntity<OHLCV> {
   @Column()
   public candleId: number;
 
-  @Column({ type: 'double precision' })
+  @Column({ type: 'double precision', nullable: true })
   public volume: number;
 
-  @Column({ type: 'double precision' })
+  @Column({ type: 'double precision', nullable: true })
   public open: number;
 
-  @Column({ type: 'double precision' })
+  @Column({ type: 'double precision', nullable: true })
   public close: number;
 
-  @Column({ type: 'double precision' })
+  @Column({ type: 'double precision', nullable: true })
   public high: number;
 
-  @Column({ type: 'double precision' })
+  @Column({ type: 'double precision', nullable: true })
   public low: number;
 
   @ManyToOne(() => CandleEntity, (candleEntity) => candleEntity.ohlcvs)

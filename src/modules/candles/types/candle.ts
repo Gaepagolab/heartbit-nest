@@ -12,6 +12,6 @@ export interface ICandle {
   coinId?: number;
 
   coin?: Coin;
+  result?: Result;
   ohlcvs?: OHLCV[];
-  results?: Result[];
 }

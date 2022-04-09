@@ -1,4 +1,4 @@
-import { Column, Entity, ManyToOne, OneToMany } from 'typeorm';
+import { Column, Entity, JoinColumn, ManyToOne, OneToMany, OneToOne } from 'typeorm';
 
 import { enumToArray } from '../../utils/type-converter';
 import { CandleType } from './types/candle-type';
@@ -22,21 +22,22 @@ export class CandleEntity extends BaseEntity implements IEntity<Candle> {
   @Column()
   public coinId: number;
 
+  @OneToOne(() => ResultEntity, { nullable: true, eager: true })
+  @JoinColumn()
+  result?: ResultEntity;
+
   @ManyToOne(() => CoinEntity, (coinEntity) => coinEntity.candles)
   public coin?: CoinEntity;
 
   @OneToMany(() => OHLCVEntity, (ohlcvEntity) => ohlcvEntity.candle)
   public ohlcvs?: OHLCVEntity[];
 
-  @OneToMany(() => ResultEntity, (resultEntity) => resultEntity.candle)
-  public results?: ResultEntity[];
-
   toModel(): Candle {
     return new Candle({
       ...this,
       coin: this.coin?.toModel(),
       ohlcvs: this.ohlcvs?.toModels(),
-      results: this.results?.toModels(),
+      result: this.result?.toModel(),
     });
   }
 }
