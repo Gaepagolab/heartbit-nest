@@ -3,6 +3,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 
 import { BaseRepository } from '../database/base.repository';
+import ResultEntity from '../results/result.entity';
 import { CandleEntity } from './candle.entity';
 import { Candle } from './candle.model';
 import { CreateCandleDto } from './dtos/create-candle.dto';
@@ -36,6 +37,17 @@ export class CandlesRepository extends BaseRepository<CandleEntity, Candle> {
       relations: this.findOneRelations,
     });
     if (!candle) throw new NotFoundException('Candle not found');
+    return candle.toModel();
+  }
+
+  async attachResult(id: number, result: ResultEntity) {
+    const candle = await this.candlesRepository.findOne(id);
+    if (!candle) throw new NotFoundException('Candle not found');
+
+    candle.result = result;
+
+    await this.candlesRepository.save(candle);
+
     return candle.toModel();
   }
 
