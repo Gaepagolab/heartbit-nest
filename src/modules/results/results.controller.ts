@@ -1,15 +1,20 @@
 import { Body, Post } from '@nestjs/common';
 
 import { SwaggerController } from '../../core/decorators/controller.decorator';
-import { CreateBulkResultsBody } from './protocols/create-bulk-results.body';
+import { CreateResultBody } from './protocols/create-result.body';
 import { ResultService } from './results.service';
 
 @SwaggerController('results')
 export class ResultsController {
-  constructor(private readonly resultsService: ResultService) {}
+  constructor(
+    // line break
+    private readonly resultsService: ResultService,
+  ) {}
 
   @Post()
-  async post(@Body() body: CreateBulkResultsBody) {
-    return this.resultsService.createBulk(body.toDtos());
+  async post(@Body() body: CreateResultBody) {
+    const result = await this.resultsService.create(body.candleId, body.toDto());
+
+    return result;
   }
 }
