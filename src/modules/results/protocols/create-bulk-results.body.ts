@@ -8,7 +8,7 @@ import { ResultOptionalPropertiesSwagger } from './result.optional-properties.sw
 import { ResultRequiredPropertiesSwagger } from './result.required-properties.swagger';
 
 class Result extends IntersectionType(
-  PickType(ResultRequiredPropertiesSwagger, ['accuracy', 'currentStart', 'currentEnd', 'findStart', 'findEnd']),
+  PickType(ResultRequiredPropertiesSwagger, ['currentStart', 'currentEnd', 'findStart', 'findEnd']),
   PickType(ResultOptionalPropertiesSwagger, undefined),
 ) {}
 
