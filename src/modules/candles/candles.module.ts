@@ -11,5 +11,6 @@ import { CandlesService } from './candles.service';
   imports: [TypeOrmModule.forFeature([CandleEntity]), OHLCVsModule],
   controllers: [CandlesController],
   providers: [CandlesService, CandlesRepository],
+  exports: [CandlesRepository],
 })
 export class CandlesModule {}
