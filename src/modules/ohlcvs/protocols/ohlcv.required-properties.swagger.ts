@@ -11,7 +11,6 @@ export class OHLCVRequiredPropertiesSwagger {
   @ProtocolProperty({
     type: Number,
   })
-  @IsPositive()
   volume: number;
 
   @ProtocolProperty({
