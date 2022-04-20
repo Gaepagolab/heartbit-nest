@@ -4,6 +4,7 @@ import { SwaggerController } from '../../core/decorators/controller.decorator';
 import { Candle } from './candle.model';
 import { CandlesService } from './candles.service';
 import { CreateCandleBody } from './protocols/create-candle.body';
+import { UpdateCandleBody } from './protocols/update-candle.body';
 
 @SwaggerController('candles')
 export class CandlesController {
@@ -30,7 +31,7 @@ export class CandlesController {
   }
 
   @Patch('/:id')
-  async patch(@Param('id') id: number) {
-    return 'hi';
+  async patch(@Param('id') id: number, @Body() body: UpdateCandleBody) {
+    return body;
   }
 }

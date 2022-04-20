@@ -6,7 +6,7 @@ import { CandleRequiredPropertiesSwagger } from './candle.required-properties.sw
 
 export class CreateCandleBody extends IntersectionType(
   PickType(CandleRequiredPropertiesSwagger, ['type', 'coinId']),
-  PickType(CandleOptionalPropertiesSwagger, undefined),
+  PickType(CandleOptionalPropertiesSwagger, []),
 ) {
   toCreateCandleDto(): CreateCandleDto {
     const { type, coinId } = this;
