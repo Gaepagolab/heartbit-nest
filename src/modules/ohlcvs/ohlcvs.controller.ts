@@ -4,7 +4,7 @@ import { SwaggerController } from '../../core/decorators/controller.decorator';
 import { OHLCV } from './ohlcv.model';
 import { OHLCVsService } from './ohlcvs.service';
 import { OHLCVsQuery } from './protocols/ohlcvs.query';
-import { PostCreateBulkBody } from './protocols/post-createBulk.body';
+import { CreateCandlesBody } from './protocols/create-candles.body';
 import { UpdateLatestBody } from './protocols/update-latest.body';
 
 @SwaggerController('ohlcvs')
@@ -12,7 +12,7 @@ export class OHLCVsController {
   constructor(private readonly ohlcvsServce: OHLCVsService) {}
 
   @Post()
-  async post(@Body() body: PostCreateBulkBody): Promise<OHLCV[]> {
+  async post(@Body() body: CreateCandlesBody): Promise<OHLCV[]> {
     return await this.ohlcvsServce.createBulk(body.toDtos());
   }
 

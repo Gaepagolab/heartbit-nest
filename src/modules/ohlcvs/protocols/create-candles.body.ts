@@ -12,7 +12,7 @@ class OHLCV extends IntersectionType(
   PickType(OHLCVOptionalPropertiesSwagger, []),
 ) {}
 
-export class PostCreateBulkBody {
+export class CreateCandlesBody {
   @ProtocolProperty({
     type: Number,
   })

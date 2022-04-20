@@ -3,7 +3,7 @@ import { Body, Get, Param, Patch, Post, Query } from '@nestjs/common';
 import { SwaggerController } from '../../core/decorators/controller.decorator';
 import { Candle } from './candle.model';
 import { CandlesService } from './candles.service';
-import { PostCandleBody } from './protocols/post-candle.body';
+import { CreateCandleBody } from './protocols/create-candle.body';
 
 @SwaggerController('candles')
 export class CandlesController {
@@ -13,7 +13,7 @@ export class CandlesController {
   ) {}
 
   @Post()
-  async post(@Body() body: PostCandleBody): Promise<Candle> {
+  async post(@Body() body: CreateCandleBody): Promise<Candle> {
     const candle = await this.candlesService.create(body.toCreateCandleDto());
 
     return candle;
@@ -21,12 +21,12 @@ export class CandlesController {
 
   @Get('/:id')
   async get(@Param('id') id: number): Promise<Candle> {
-    return this.candlesService.findByPk(id);
+    return await this.candlesService.findByPk(id);
   }
 
   @Get()
   async getByCoinId(@Query('coinId') coinId: number): Promise<Candle[]> {
-    return this.candlesService.findByCoinId(coinId);
+    return await this.candlesService.findByCoinId(coinId);
   }
 
   @Patch('/:id')
