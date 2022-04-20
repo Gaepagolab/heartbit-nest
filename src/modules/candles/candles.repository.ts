@@ -42,7 +42,6 @@ export class CandlesRepository extends BaseRepository<CandleEntity, Candle> {
 
   async attachResult(id: number, result: ResultEntity) {
     const candle = await this.candlesRepository.findOne(id);
-    if (!candle) throw new NotFoundException('Candle not found');
 
     candle.result = result;
 

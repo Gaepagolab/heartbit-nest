@@ -4,9 +4,9 @@ import { CreateCandleDto } from '../dtos/create-candle.dto';
 import { CandleOptionalPropertiesSwagger } from './candle.optional-properties.swagger';
 import { CandleRequiredPropertiesSwagger } from './candle.required-properties.swagger';
 
-export class PostCandleBody extends IntersectionType(
+export class CreateCandleBody extends IntersectionType(
   PickType(CandleRequiredPropertiesSwagger, ['type', 'coinId']),
-  PickType(CandleOptionalPropertiesSwagger, undefined),
+  PickType(CandleOptionalPropertiesSwagger, []),
 ) {
   toCreateCandleDto(): CreateCandleDto {
     const { type, coinId } = this;
