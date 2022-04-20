@@ -8,7 +8,7 @@ export class UpdateResultBody extends IntersectionType(
   PickType(ResultRequiredPropertiesSwagger, ['currentStart', 'currentEnd', 'findStart', 'findEnd']),
   PickType(ResultOptionalPropertiesSwagger, undefined),
 ) {
-  toDto(candleId: number): CreateResultDto {
-    return CreateResultDto.from({ ...this, candleId });
+  toDto(): CreateResultDto {
+    return CreateResultDto.from({ ...this });
   }
 }
