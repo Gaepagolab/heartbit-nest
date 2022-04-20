@@ -13,7 +13,6 @@ export class OHLCVOptionalPropertiesSwagger {
     isOptional: true,
     type: Number,
   })
-  @IsPositive()
   volume?: number;
 
   @ProtocolProperty({
