@@ -1,9 +1,8 @@
-import { Body, Get, Param, Post, Query } from '@nestjs/common';
+import { Body, Get, Param, Patch, Post, Query } from '@nestjs/common';
 
 import { SwaggerController } from '../../core/decorators/controller.decorator';
 import { Candle } from './candle.model';
 import { CandlesService } from './candles.service';
-import { OHLCVsService } from '../ohlcvs/ohlcvs.service';
 import { PostCandleBody } from './protocols/post-candle.body';
 
 @SwaggerController('candles')
@@ -28,5 +27,10 @@ export class CandlesController {
   @Get()
   async getByCoinId(@Query('coinId') coinId: number): Promise<Candle[]> {
     return this.candlesService.findByCoinId(coinId);
+  }
+
+  @Patch('/:id')
+  async patch(@Param('id') id: number) {
+    return 'hi';
   }
 }
