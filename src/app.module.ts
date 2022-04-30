@@ -15,6 +15,7 @@ import { CoinsModule } from './modules/coins/coins.module';
 import { CandlesModule } from './modules/candles/candles.module';
 import { OHLCVsModule } from './modules/ohlcvs/ohlcvs.module';
 import { ResultsModule } from './modules/results/results.module';
+import { FinancesModule } from './modules/finances/finances.module';
 
 @Module({
   imports: [
@@ -43,6 +44,7 @@ import { ResultsModule } from './modules/results/results.module';
     CandlesModule,
     OHLCVsModule,
     ResultsModule,
+    FinancesModule,
   ],
   controllers: [AppController],
   providers: [
