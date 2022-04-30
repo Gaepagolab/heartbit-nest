@@ -7,8 +7,8 @@ import { OHLCV } from './ohlcv.model';
 
 @Entity({ name: 'ohlcvs' })
 export default class OHLCVEntity extends BaseEntity implements IEntity<OHLCV> {
-  @Column()
-  public datetime: string;
+  @Column({ type: 'timestamptz' })
+  public datetime: Date;
 
   @Column()
   public candleId: number;
