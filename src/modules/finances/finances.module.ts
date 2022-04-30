@@ -3,10 +3,12 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 
 import FinanceEntity from './finance.entity';
 import { FinancesController } from './finances.controller';
+import { FinancesRepository } from './finances.repository';
+import { FinancesService } from './finances.service';
 
 @Module({
   imports: [TypeOrmModule.forFeature([FinanceEntity])],
   controllers: [FinancesController],
-  providers: [],
+  providers: [FinancesService, FinancesRepository],
 })
 export class FinancesModule {}
