@@ -1,27 +1,16 @@
-import { IsPositive } from 'class-validator';
+import { ApiProperty } from '@nestjs/swagger';
+import { IsDateString, IsPositive } from 'class-validator';
 
 import { ProtocolProperty } from '../../../core/decorators/protocol-properties';
 
 export class ResultRequiredPropertiesSwagger {
-  @ProtocolProperty({
-    type: String,
-  })
-  currentStart: string;
+  @ApiProperty()
+  @IsDateString()
+  currentStart: Date;
 
-  @ProtocolProperty({
-    type: String,
-  })
-  currentEnd: string;
-
-  @ProtocolProperty({
-    type: String,
-  })
-  findStart: string;
-
-  @ProtocolProperty({
-    type: String,
-  })
-  findEnd: string;
+  @ApiProperty()
+  @IsDateString()
+  currentEnd: Date;
 
   @ProtocolProperty({
     type: Number,

@@ -14,7 +14,7 @@ export class UpdateOHLCVDto {
     return it;
   }
 
-  datetime?: string;
+  datetime?: Date;
   volume?: number;
   open?: number;
   close?: number;

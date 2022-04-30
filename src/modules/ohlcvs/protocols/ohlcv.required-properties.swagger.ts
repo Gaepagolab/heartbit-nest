@@ -1,12 +1,12 @@
-import { IsPositive } from 'class-validator';
+import { ApiProperty } from '@nestjs/swagger';
+import { IsDateString, IsPositive } from 'class-validator';
 
 import { ProtocolProperty } from '../../../core/decorators/protocol-properties';
 
 export class OHLCVRequiredPropertiesSwagger {
-  @ProtocolProperty({
-    type: String,
-  })
-  datetime: string;
+  @ApiProperty()
+  @IsDateString()
+  datetime: Date;
 
   @ProtocolProperty({
     type: Number,

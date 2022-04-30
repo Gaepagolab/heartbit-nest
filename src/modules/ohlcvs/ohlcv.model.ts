@@ -6,7 +6,7 @@ export class OHLCV implements IModel, IOHLCV {
   public id: number;
   public createdAt: Date;
   public updatedAt: Date;
-  public datetime: string;
+  public datetime: Date;
   public volume: number;
   public open: number;
   public close: number;

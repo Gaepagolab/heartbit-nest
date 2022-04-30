@@ -7,17 +7,17 @@ import { Result } from './result.model';
 
 @Entity({ name: 'results' })
 export default class ResultEntity extends BaseEntity implements IEntity<Result> {
-  @Column()
-  public currentStart: string;
+  @Column({ type: 'timestamptz' })
+  public currentStart: Date;
 
-  @Column()
-  public currentEnd: string;
+  @Column({ type: 'timestamptz' })
+  public currentEnd: Date;
 
-  @Column()
-  public findStart: string;
+  @Column({ type: 'timestamptz', nullable: true })
+  public findStart?: Date;
 
-  @Column()
-  public findEnd: string;
+  @Column({ type: 'timestamptz', nullable: true })
+  public findEnd?: Date;
 
   @OneToOne(() => CandleEntity, (candle: CandleEntity) => candle.result)
   public candle: CandleEntity;

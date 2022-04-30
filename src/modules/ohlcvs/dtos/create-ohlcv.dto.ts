@@ -1,7 +1,7 @@
 export class CreateOHLCVDto {
   static from(options: {
     candleId: number;
-    datetime: string;
+    datetime: Date;
     volume: number;
     open: number;
     close: number;
@@ -23,7 +23,7 @@ export class CreateOHLCVDto {
   }
 
   candleId: number;
-  datetime: string;
+  datetime: Date;
   volume: number;
   open: number;
   close: number;

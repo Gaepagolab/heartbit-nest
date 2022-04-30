@@ -5,7 +5,7 @@ export interface IOHLCV {
   createdAt: Date;
   updatedAt: Date;
 
-  datetime: string;
+  datetime: Date;
   volume: number;
   open: number;
   close: number;

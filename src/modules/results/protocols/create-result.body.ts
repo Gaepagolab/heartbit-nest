@@ -5,8 +5,8 @@ import { ResultOptionalPropertiesSwagger } from './result.optional-properties.sw
 import { ResultRequiredPropertiesSwagger } from './result.required-properties.swagger';
 
 export class CreateResultBody extends IntersectionType(
-  PickType(ResultRequiredPropertiesSwagger, ['candleId', 'currentStart', 'currentEnd', 'findStart', 'findEnd']),
-  PickType(ResultOptionalPropertiesSwagger, undefined),
+  PickType(ResultRequiredPropertiesSwagger, ['candleId', 'currentStart', 'currentEnd']),
+  PickType(ResultOptionalPropertiesSwagger, ['findStart', 'findEnd']),
 ) {
   toDto(): CreateResultDto {
     return CreateResultDto.from({ ...this });
