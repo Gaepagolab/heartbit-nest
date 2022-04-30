@@ -1,5 +1,5 @@
 export class CreateResultDto {
-  static from(options: { currentStart: string; currentEnd: string; findStart: string; findEnd: string }): CreateResultDto {
+  static from(options: { currentStart: Date; currentEnd: Date; findStart?: Date; findEnd?: Date }): CreateResultDto {
     const it = new CreateResultDto();
     const { currentStart, currentEnd, findStart, findEnd } = options;
 
@@ -11,8 +11,8 @@ export class CreateResultDto {
     return it;
   }
 
-  currentStart: string;
-  currentEnd: string;
-  findStart: string;
-  findEnd: string;
+  currentStart: Date;
+  currentEnd: Date;
+  findStart?: Date;
+  findEnd?: Date;
 }

@@ -3,8 +3,8 @@ export interface IResult {
   createdAt: Date;
   updatedAt: Date;
 
-  currentStart: string;
-  currentEnd: string;
-  findStart: string;
-  findEnd: string;
+  currentStart: Date;
+  currentEnd: Date;
+  findStart?: Date;
+  findEnd?: Date;
 }

@@ -5,10 +5,10 @@ export class Result implements IModel, IResult {
   public id: number;
   public createdAt: Date;
   public updatedAt: Date;
-  public currentStart: string;
-  public currentEnd: string;
-  public findStart: string;
-  public findEnd: string;
+  public currentStart: Date;
+  public currentEnd: Date;
+  public findStart?: Date;
+  public findEnd?: Date;
 
   constructor({ id, createdAt, updatedAt, currentStart, currentEnd, findStart, findEnd }: IResult) {
     this.id = id;
