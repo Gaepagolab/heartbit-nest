@@ -32,8 +32,6 @@ export class OHLCV implements IModel, IOHLCV {
   toJSON() {
     return {
       id: this.id,
-      createdAt: this.createdAt,
-      updatedAt: this.updatedAt,
       datetime: this.datetime,
       volume: this.volume,
       open: this.open,
