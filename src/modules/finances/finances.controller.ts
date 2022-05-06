@@ -1,4 +1,4 @@
-import { Body, Get, Post } from '@nestjs/common';
+import { Body, Get, Param,  Post } from '@nestjs/common';
 
 import { SwaggerController } from '../../core/decorators/controller.decorator';
 import { Finance } from './finance.model';
@@ -17,5 +17,10 @@ export class FinancesController {
   @Get()
   async getAll(): Promise<Finance[]> {
     return await this.financesService.findAll();
+  }
+
+  @Get('/:type')
+  async getByType(@Param('type') type: string): Promise<Finance[]> {
+    return await (type === "ALL") ? this.financesService.findAll() : this.financesService.findByType(type);
   }
 }

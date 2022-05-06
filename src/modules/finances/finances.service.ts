@@ -14,4 +14,8 @@ export class FinancesService {
   async findAll(): Promise<Finance[]> {
     return await this.financesRepository.findAll();
   }
+
+   async findByType(type: string): Promise<Finance[]> {
+    return await this.financesRepository.findByType(type);
+  }
 }
