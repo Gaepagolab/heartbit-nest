@@ -4,6 +4,7 @@ import { OHLCV } from './ohlcv.model';
 import { CreateOHLCVDto } from './dtos/create-ohlcv.dto';
 import { OHLCVsRepository } from './ohlcvs.repository';
 import { UpdateOHLCVDto } from './dtos/update-ohlcv.dto';
+import { OHLCVFilterDto } from './dtos/ohlcv.filter.dto';
 
 @Injectable()
 export class OHLCVsService {
@@ -27,6 +28,10 @@ export class OHLCVsService {
   async createBulk(dtos: CreateOHLCVDto[]): Promise<OHLCV[]> {
     this.guardOfCreateBulkForBelongedSameCandle(dtos);
     return await this.ohlcvsRepository.createBulk(dtos);
+  }
+
+  async findAllByFilter(dto: OHLCVFilterDto): Promise<OHLCV[]> {
+    return await this.ohlcvsRepository.findAllByFilter(dto);
   }
 
   async findByCandleId(candleId: number): Promise<OHLCV[]> {
