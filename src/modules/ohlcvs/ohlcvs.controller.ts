@@ -18,7 +18,7 @@ export class OHLCVsController {
 
   @Get()
   async getAll(@Query() query: OHLCVsQuery): Promise<OHLCV[]> {
-    return await this.ohlcvsServce.findByCandleId(query.candleId);
+    return await this.ohlcvsServce.findAllByFilter(query.toOHLCVFilterDto());
   }
 
   @Patch('/lastest')
