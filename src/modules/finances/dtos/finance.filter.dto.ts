@@ -4,7 +4,7 @@ import FinanceEntity from '../finance.entity';
 import { FinanceType } from '../types/finance-type';
 
 export class FinanceFilterDto {
-  static from(options: { type: FinanceType }): FinanceFilterDto {
+  static from(options: { type?: FinanceType }): FinanceFilterDto {
     const it = new FinanceFilterDto();
 
     if (options.type !== undefined) it.type = options.type;
