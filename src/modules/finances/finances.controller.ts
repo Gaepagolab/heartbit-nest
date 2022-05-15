@@ -1,9 +1,10 @@
-import { Body, Get, Post } from '@nestjs/common';
+import { Body, Get, Post, Query } from '@nestjs/common';
 
 import { SwaggerController } from '../../core/decorators/controller.decorator';
 import { Finance } from './finance.model';
 import { FinancesService } from './finances.service';
 import { CreateFinanceBody } from './protocols/create-finance.body';
+import { FinanceQuery } from './protocols/finance.query';
 
 @SwaggerController('finances')
 export class FinancesController {
@@ -15,7 +16,7 @@ export class FinancesController {
   }
 
   @Get()
-  async getAll(): Promise<Finance[]> {
-    return await this.financesService.findAll();
+  async getAll(@Query() query: FinanceQuery): Promise<Finance[]> {
+    return await this.financesService.findAll(query.toFinanceFilterDto());
   }
 }

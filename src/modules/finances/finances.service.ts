@@ -1,5 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { CreateFinanceDto } from './dtos/create-finance.dto';
+import { FinanceFilterDto } from './dtos/finance.filter.dto';
 import { Finance } from './finance.model';
 import { FinancesRepository } from './finances.repository';
 
@@ -11,7 +12,7 @@ export class FinancesService {
     return await this.financesRepository.create(dto);
   }
 
-  async findAll(): Promise<Finance[]> {
-    return await this.financesRepository.findAll();
+  async findAll(dto: FinanceFilterDto): Promise<Finance[]> {
+    return await this.financesRepository.findAllByFilter(dto);
   }
 }
