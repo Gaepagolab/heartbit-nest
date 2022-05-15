@@ -42,4 +42,14 @@ export class OHLCVOptionalPropertiesSwagger {
   })
   @IsPositive()
   low?: number;
+
+  @ApiPropertyOptional()
+  @IsOptional()
+  @IsDateString()
+  from?: Date;
+
+  @ApiPropertyOptional()
+  @IsOptional()
+  @IsDateString()
+  to?: Date;
 }

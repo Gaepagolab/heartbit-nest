@@ -3,6 +3,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 
 import { BaseRepository } from '../database/base.repository';
+import { OHLCVFilterDto } from './dtos/ohlcv.filter.dto';
 import OHLCVEntity from './ohlcv.entity';
 import { OHLCV } from './ohlcv.model';
 
@@ -35,5 +36,14 @@ export class OHLCVsRepository extends BaseRepository<OHLCVEntity, OHLCV> {
     if (!entity) throw new NotFoundException('Entity not found');
 
     return entity.toModel();
+  }
+
+  async findAllByFilter(filter: OHLCVFilterDto): Promise<OHLCV[]> {
+    const result = await this.ohlcvsRepository.find({
+      ...filter.toWhereLiteral(),
+      order: { datetime: 'ASC' },
+    });
+
+    return result.toModels();
   }
 }
